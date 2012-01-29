@@ -1,4 +1,6 @@
 Ext.application({
     name: 'WebUI',
-    autoCreateViewport: true
+    autoCreateViewport: true,
+    
+    requires: ['logger','WebUI.OEM']
 });
