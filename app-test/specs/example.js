@@ -5,8 +5,4 @@ describe("Basic Assumptions", function() {
         expect(Ext.getVersion()).toBeTruthy();
         expect(Ext.getVersion().major).toEqual(4);
     });
-
-    // it("has loaded WebUI code",function(){
-    //     expect(WebUI).toBeDefined();
-    // });
 });
