@@ -1,6 +1,6 @@
 Ext.define('WebUI.view.layout.Nav',{
   extend: 'Ext.tree.Panel',
-  alias: 'widget.layout-nav',
+  alias:  ['widget.layout-nav'],
   
   split: true,
   rootVisible: false,
@@ -15,11 +15,19 @@ Ext.define('WebUI.view.layout.Nav',{
       text:"root",
       children: [
         { text:'Google', link: 'http://google.com', leaf: true},
-        { text: 'Interfaces', expanded: true, children: [
+        { text: 'Interfaces', expanded: false, children: [
           {text: 'Ethernet', panel: 'interface-ethernet', leaf: true},
           {text: 'IP', panel: 'interface-ip', leaf: true}
         ]}
       ]
     }
-  })
+  }),
+  
+  tbar: [{
+    xtype: 'button',
+    text:  'Expand All'
+  },{
+    xtype: 'button',
+    text:  'Collapse All'
+  }]
 });
