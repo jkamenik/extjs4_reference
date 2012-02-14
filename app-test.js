@@ -6,7 +6,7 @@ Ext.onReady(function() {
     Application = Ext.create('Ext.app.Application', {
         name: 'WebUI',
         
-        requires: ['logger'],
+        requires: ['logger','WebUI.lib'],
 
         launch: function() {
             //include the tests in the test.html head
