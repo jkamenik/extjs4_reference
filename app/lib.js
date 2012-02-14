@@ -38,6 +38,22 @@ WebUI.lib = {
     var undef; // true undefined
     return (item === null || item === undef);
   },
+  
+  isEmpty: function(item){
+    if(this.isNull(item)){
+      return true;
+    }
+    
+    return item.length === 0;
+  },
+  
+  isBlank: function(item){
+    if(this.isEmpty(item)){
+      return true;
+    }
+    
+    return /^\s*$/.test(item)
+  },
 
   String: function(item){
     if(this.isObject(item) && !this.isArray(item)){
