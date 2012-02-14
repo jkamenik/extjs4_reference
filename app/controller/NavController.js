@@ -13,6 +13,9 @@ Ext.define("WebUI.controller.NavController",{
       },
       'layout-nav button[text="Collapse All"]': {
         click: this.collapseAll
+      },
+      'layout-nav': {
+        select: this.itemSelected
       }
     });
   },
@@ -23,5 +26,19 @@ Ext.define("WebUI.controller.NavController",{
   
   collapseAll: function(){
     this.getNav().getRootNode().collapseChildren(true);
+  },
+  
+  itemSelected: function(row,model){
+    var link  = model.get('link');
+    var panel = model.get('panel');
+
+    logger.debug('item selected');
+    logger.debug(link);
+    logger.debug(panel);
+    
+    if(test.isBlank(link) && test.isBlank(panel)){
+      logger.debug('Neither link nor panel defined.  Skipping...');
+      return;
+    }
   }
 });
