@@ -4,7 +4,10 @@ Ext.define("WebUI.controller.NavController",{
   // Controllers should add all the views that they need
   views: [
     'layout.Nav',
-    'layout.Content'
+    'layout.Content',
+    
+    // the error panel
+    'ContentError'
   ],
   
   refs: [{
@@ -41,9 +44,6 @@ Ext.define("WebUI.controller.NavController",{
     var link  = model.get('link');
     var panel = model.get('panel');
     
-    logger.debug(link);
-    logger.debug(panel);
-
     if(test.isBlank(link) && test.isBlank(panel)){
       logger.debug('Neither link nor panel defined.  Skipping...');
       return;
@@ -54,15 +54,22 @@ Ext.define("WebUI.controller.NavController",{
       return;
     }
     
-    var component = Ext.ClassManager.getByAlias(panel);
-    logger.debug(component);
-    logger.debug(this.getContent());
-    if(test.isEmpty(component)){
-      logger.debug('adding to panel')
-      component = Ext.widget(panel);
+    try {
+      logger.debug(panel);
+      var component = this.getContent().child(panel);
+      logger.debug('Component found');
       logger.debug(component);
-      this.getContent().add(component);
+      if(test.isEmpty(component)){
+        logger.debug('adding to panel')
+        component = Ext.widget(panel);
+        logger.debug(component);
+        this.getContent().add(component);
+      }
+      this.getContent().getLayout().setActiveItem(component);
+    } catch(e){
+      logger.error('Item could not be found');
+      logger.error(e);
+      this.getContent().getLayout().setActiveItem('ContentError');
     }
-    this.getContent().getLayout().setActiveItem(component);
   }
 });

@@ -13,6 +13,8 @@ Ext.define('WebUI.view.layout.Content',{
   
   items: [{
     html: 'I am content'
+  },{
+    xtype: 'ContentError'
   // },{
   //   xtype: 'interface-ip'
   // },{
