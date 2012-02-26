@@ -17,6 +17,10 @@ logger = new Object({
     this._logLevel = level;
   },
   
+  error: function(msg){
+    this._log(this.ERROR,msg);
+  },
+  
   info: function(msg){
     this._log(this.INFO,msg);
   },
