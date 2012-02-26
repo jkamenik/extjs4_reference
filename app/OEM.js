@@ -2,6 +2,7 @@
 
 Ext.define('WebUI.OEM.Header',{
   override: 'WebUI.view.layout.Header',
+  requires: ['WebUI.view.layout.Header'],
   
   cls: 'patton-header',
   height: 100,

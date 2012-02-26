@@ -17,7 +17,7 @@ Ext.define('WebUI.view.layout.Nav',{
         { text:'Google', link: 'http://google.com', leaf: true},
         { text: 'Interfaces', expanded: false, children: [
           {text: 'Ethernet', panel: 'interface-ethernet', leaf: true},
-          {text: 'IP', panel: 'interface-ip', leaf: true}
+          {text: 'IP', panel: 'interface.ip', leaf: true}
         ]}
       ]
     }

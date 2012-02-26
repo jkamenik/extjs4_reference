@@ -5,7 +5,7 @@ Ext.define('WebUI.view.layout.Content',{
   // requires: [
   //   'WebUI.view.interface.Ethernet',
   //   'WebUI.store.Ethernets',
-  //   'WebUI.view.interface.IP'
+  //   'WebUI.view.interface.Ip'
   // ],
   
   layout: 'card',
