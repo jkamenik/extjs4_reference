@@ -10,18 +10,20 @@ Ext.define('WebUI.view.Viewport',{
   ],
   
   items: [{
-    xtype:  'layout.header',
-    region: 'north',
-    height: 57
-  },{
-    region: 'south',
-    xtype:  'layout.footer'
-  },{
-    region: 'west',
-    xtype:  'layout-nav',
-    width: 200
-  },{
-    region: 'center',
-    xtype:  'layout-content'
+    xtype:  'interface-ip',
+    region: 'center'
+  //   xtype:  'layout.header',
+  //   region: 'north',
+  //   height: 57
+  // },{
+  //   region: 'south',
+  //   xtype:  'layout.footer'
+  // },{
+  //   region: 'west',
+  //   xtype:  'layout-nav',
+  //   width: 200
+  // },{
+  //   region: 'center',
+  //   xtype:  'layout-content'
   }]
 });
