@@ -1,7 +1,6 @@
 Ext.define('WebUI.store.Ips', {
   extend:  'Ext.data.Store',
 
-  // model:   'Ip',
   fields: ['ip', 'mask'],
   data: [
       { ip: '1.1.1.1', mask: '255.255.255.0' },

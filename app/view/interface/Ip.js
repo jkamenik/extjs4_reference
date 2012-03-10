@@ -3,33 +3,16 @@ Ext.define('WebUI.view.interface.Ip',{
   alias:  'widget.interface-ip',
   
   store: 'Ips',
-  // 
-  // title: 'IP Interfaces',
-  // 
-  // columns: [{
-  //   text: 'IP',
-  //   dataIndex: 'ip'
-  // },{
-  //   text: 'Mask',
-  //   dataIndex: 'mask'
-  // }]
   
-  title:  'Ips',
+  title: 'IP Interfaces',
   
-  initComponent: function() {
-      this.store = {
-          fields: ['name', 'email'],
-          data  : [
-              {name: 'Ed',    email: 'ed@sencha.com'},
-              {name: 'Tommy', email: 'tommy@sencha.com'}
-          ]
-      };
-
-      this.columns = [
-          {header: 'Name',  dataIndex: 'name',  flex: 1},
-          {header: 'Email', dataIndex: 'email', flex: 1}
-      ];
-
-      this.callParent(arguments);
-  }
+  columns: [{
+    text: 'IP',
+    dataIndex: 'ip',
+    flex:      1
+  },{
+    text:      'Mask',
+    dataIndex: 'mask',
+    flex:      1
+  }]
 });
