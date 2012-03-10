@@ -10,8 +10,7 @@ Ext.application({
     
     // only include controllers.  Controllers include views
     controllers: [
-      // 'ContentController',
-      // 'NavController',
+      'NavController',
       'Ips'
     ]
 });

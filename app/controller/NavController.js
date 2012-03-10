@@ -5,6 +5,8 @@ Ext.define("WebUI.controller.NavController",{
   views: [
     'layout.Nav',
     'layout.Content',
+    'layout.Footer',
+    'layout.Header',
     
     // the error panel
     'ContentError'
