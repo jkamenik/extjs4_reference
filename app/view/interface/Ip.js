@@ -14,5 +14,14 @@ Ext.define('WebUI.view.interface.Ip',{
     text:      'Mask',
     dataIndex: 'mask',
     flex:      1
-  }]
+  },{
+    text:      'Ethernet',
+    dataIndex: 'ethernet.name',
+    flex:      1
+  }],
+  
+  tbar: [
+    { xtype: 'button', text: 'New' },
+    { xtype: 'button', text: 'Edit', disabled: true}
+  ]
 });

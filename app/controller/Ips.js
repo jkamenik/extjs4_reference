@@ -5,25 +5,32 @@ Ext.define('WebUI.controller.Ips', {
   stores: ['Ips'],
   models: ['Ip'],
   
+  refs: [{
+    ref:      'update',
+    selector: 'interface-ip button[text=Edit]'
+  }],
+  
   init: function() {
     this.control({
       'interface-ip': {
-        render:       this.onPanelRendered,
-        itemdblclick: this.dbClick
+        itemdblclick:    this.openEditor,
+        selectionchange: this.allowEdit,
       },
       'interface-ip-editor button[action=save]': {
         click: this.updateRecord
+      },
+      'interface-ip button[text=Edit]': {
+        click: this.newEditor
       }
     });
     
   },
 
-  onPanelRendered: function() {
-    logger.debug('The panel was rendered');
-  },
-  
-  dbClick: function(grid,record){
+  openEditor: function(grid,record){
     Ext.widget('interface-ip-editor').down('form').loadRecord(record);
+  },
+  newEditor: function(){
+    Ext.widget('interface-ip-editor').show();
   },
   
   updateRecord: function(button){
@@ -33,5 +40,9 @@ Ext.define('WebUI.controller.Ips', {
     form.getRecord().set(form.getValues());
     win.close();
     this.getIpsStore().sync();
+  },
+  
+  allowEdit: function(model,selection){
+    this.getUpdate().setDisabled(selection.length == 0)
   }
 });
