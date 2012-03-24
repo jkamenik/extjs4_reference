@@ -10,5 +10,10 @@ Ext.define('WebUI.view.interface.Ethernet',{
     text:      'Name',
     dataIndex: 'name',
     flex:      1
-  }]
+  }],
+  
+  tbar: [
+    { xtype: 'button', text: 'New' },
+    '|','Double click to Edit'
+  ]
 });

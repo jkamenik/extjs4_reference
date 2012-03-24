@@ -24,7 +24,6 @@ Ext.define('WebUI.controller.Ips', {
       'interface-ip button[text=New]': {
         click: this.newEditor
       }
-      
     });
     
   },
