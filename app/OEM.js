@@ -11,9 +11,9 @@ Ext.define('WebUI.OEM.Header',{
   data: {name: 'Testing the header'}
 });
 
-
-// Ext.override(WebUI.view.layout.Footer,{
-//   _buildFbar: function(){
-//     return ['&copy; 2010 Patton Electronics Co., All rights reserved'];
-//   }
-// });
+Ext.define('WebUI.OEM.Footer',{
+  override: 'WebUI.view.layout.Footer',
+  requires: ['WebUI.view.layout.Footer'],
+  
+  html: '&copy; 2010 Patton Electronics Co., All rights reserved'
+});
