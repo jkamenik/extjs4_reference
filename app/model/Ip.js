@@ -1,6 +1,6 @@
 Ext.define('WebUI.model.Ip', {
     extend: 'Ext.data.Model',
-    fields: [{
+    fields: ['id',{
       name: 'ip',
       type: 'string'
     },{

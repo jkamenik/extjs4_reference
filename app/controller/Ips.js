@@ -13,15 +13,18 @@ Ext.define('WebUI.controller.Ips', {
   init: function() {
     this.control({
       'interface-ip': {
-        itemdblclick:    this.openEditor,
-        selectionchange: this.allowEdit,
+        itemdblclick: this.openEditor
       },
       'interface-ip-editor button[action=save]': {
         click: this.updateRecord
       },
       'interface-ip button[text=Edit]': {
+        click: this.openEditor
+      },
+      'interface-ip button[text=New]': {
         click: this.newEditor
       }
+      
     });
     
   },
@@ -30,19 +33,24 @@ Ext.define('WebUI.controller.Ips', {
     Ext.widget('interface-ip-editor').down('form').loadRecord(record);
   },
   newEditor: function(){
-    Ext.widget('interface-ip-editor').show();
+    Ext.widget('interface-ip-editor').down('form').loadRecord(this.getModel('Ip').create({}));
   },
   
   updateRecord: function(button){
-    var win  = button.up('window');
-    var form = win.down('form');
+    var win    = button.up('window');
+    var form   = win.down('form');
+    var record = form.getRecord();
     
-    form.getRecord().set(form.getValues());
+    record.set(form.getValues());
+    
+    if(test.isEmpty(record.get('id'))){
+      // must add the time to store
+      var id = this.getIpsStore().max('id') || 0;
+      record.set('id',id);
+      this.getIpsStore().add(record);
+    }
+
     win.close();
     this.getIpsStore().sync();
-  },
-  
-  allowEdit: function(model,selection){
-    this.getUpdate().setDisabled(selection.length == 0)
   }
 });

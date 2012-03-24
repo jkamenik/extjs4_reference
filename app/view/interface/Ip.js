@@ -22,6 +22,6 @@ Ext.define('WebUI.view.interface.Ip',{
   
   tbar: [
     { xtype: 'button', text: 'New' },
-    { xtype: 'button', text: 'Edit', disabled: true}
+    '|','Double click to Edit'
   ]
 });
