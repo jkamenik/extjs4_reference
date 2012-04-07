@@ -16,7 +16,7 @@ Ext.define('WebUI.view.interface.Ip',{
     flex:      1
   },{
     text:      'Ethernet',
-    dataIndex: 'ethernet.name',
+    dataIndex: 'ethernet_id',
     flex:      1
   }],
   

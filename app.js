@@ -5,7 +5,7 @@ Ext.application({
     requires: [
       'logger',
       'WebUI.OEM',
-      'WebUI.lib',
+      'WebUI.lib'
     ],
     
     // only include controllers.  Controllers include views

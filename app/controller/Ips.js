@@ -18,6 +18,9 @@ Ext.define('WebUI.controller.Ips', {
       'interface-ip-editor button[action=save]': {
         click: this.updateRecord
       },
+      'interface-ip-editor button[action=close]': {
+        click: this.closeEditor
+      },
       'interface-ip button[text=Edit]': {
         click: this.openEditor
       },
@@ -33,6 +36,9 @@ Ext.define('WebUI.controller.Ips', {
   },
   newEditor: function(){
     Ext.widget('interface-ip-editor').down('form').loadRecord(this.getModel('Ip').create({}));
+  },
+  closeEditor: function(button){
+    button.up('window').close();
   },
   
   updateRecord: function(button){

@@ -5,30 +5,33 @@ Ext.define('WebUI.view.interface.IpEditor', {
     title : 'Edit Ip',
     layout: 'fit',
     autoShow: true,
-
-    initComponent: function() {
-      this.items = [{
-        xtype: 'form',
-        items: [{
-          xtype:      'textfield',
-          name:       'ip',
-          fieldLabel: 'IP'
-        },{
-          xtype:      'textfield',
-          name:       'mask',
-          fieldLabel: 'Mask'
-        }]
-      }];
-
-      this.buttons = [{
-        text: 'Save',
-        action: 'save'
+    
+    items: [{
+      xtype: 'form',
+      items: [{
+        xtype:      'textfield',
+        name:       'ip',
+        fieldLabel: 'IP',
+        allowBlank: false
       },{
-        text: 'Cancel',
-        scope: this,
-        handler: this.close
-      }];
-
-      this.callParent(arguments);
-    }
+        xtype:      'textfield',
+        name:       'mask',
+        fieldLabel: 'Mask'
+      },{
+        xtype:        'combobox',
+        store:        'Ethernets',
+        displayField: 'name',
+        valueField:   'id',
+        name:         'ethernet_id',
+        fieldLabel:   'Ethernet'
+      }],
+      buttons: [{
+        text: 'Save',
+        action: 'save',
+        formBind: true
+      },{
+        text:   'Cancel',
+        action: 'close'
+      }]
+    }]
 });
