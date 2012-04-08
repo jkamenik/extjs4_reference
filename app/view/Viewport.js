@@ -5,7 +5,7 @@ Ext.define('WebUI.view.Viewport',{
   items: [{
     xtype:  'layout.header',
     region: 'north',
-    height: 57
+    height: 77
   },{
     region: 'south',
     xtype:  'layout.footer'
