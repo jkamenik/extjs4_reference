@@ -12,6 +12,7 @@ Ext.application({
     controllers: [
       'NavController',
       'Ips',
-      'Ethernets'
+      'Ethernets',
+      'EthernetIps'
     ]
 });

@@ -2,7 +2,7 @@ Ext.define('WebUI.controller.Ips', {
   extend: 'Ext.app.Controller',
   
   views:  ['interface.Ip','interface.IpEditor'],
-  stores: ['Ips'],
+  stores: ['Ethernets','Ips'],
   models: ['Ip'],
   
   refs: [{

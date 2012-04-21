@@ -17,6 +17,11 @@ Ext.define('WebUI.view.interface.Ip',{
   },{
     text:      'Ethernet',
     dataIndex: 'ethernet_id',
+    renderer: function(value){
+      logger.debug('Rendering IP row');
+      logger.debug(Ext.getStore('Ethernets'));
+      return Ext.getStore('Ethernets').getById(value).get('name');
+    },
     flex:      1
   }],
   
