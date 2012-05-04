@@ -3,7 +3,7 @@ Ext.define('WebUI.controller.Ips', {
   
   views:  ['interface.Ip','interface.IpEditor'],
   stores: ['Ethernets','Ips'],
-  models: ['Ip'],
+  models: ['IpInterface'],
   
   refs: [{
     ref:      'update',
@@ -26,6 +26,9 @@ Ext.define('WebUI.controller.Ips', {
       },
       'interface-ip button[text=New]': {
         click: this.newEditor
+      },
+      'interface-ip button[itemId=refresh]': {
+        click: this.refresh
       }
     });
     
@@ -39,6 +42,10 @@ Ext.define('WebUI.controller.Ips', {
   },
   closeEditor: function(button){
     button.up('window').close();
+  },
+  
+  refresh: function(button){
+    this.getIpsStore().refresh();
   },
   
   updateRecord: function(button){
