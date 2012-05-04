@@ -5,10 +5,15 @@ Ext.define('WebUI.OEM.Header',{
   requires: ['WebUI.view.layout.Header'],
   
   cls: 'patton-header',
-  height: 100,
   
   tpl: new Ext.XTemplate('<img src="resources/images/patton.png" style="margin-top: 20px; margin-left:15px"><span style="float: right; margin-top: 5px; margin-right: 5px; color: white;">{name}</span>'),
-  data: {name: 'Testing the header'}
+  data: {name: 'Testing the header'},
+  
+  onRender: function(){
+    this.setHeight(83);
+    
+    this.callParent(arguments);
+  }
 });
 
 Ext.define('WebUI.OEM.Footer',{
