@@ -6,6 +6,8 @@ Ext.define('WebUI.OEM.Header',{
   
   cls: 'patton-header',
   
+  border: false,
+  
   tpl: new Ext.XTemplate('<img src="resources/images/patton.png" style="margin-top: 20px; margin-left:15px"><span style="float: right; margin-top: 5px; margin-right: 5px; color: white;">{name}</span>'),
   data: {name: 'Testing the header'},
   
