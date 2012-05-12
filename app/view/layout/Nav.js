@@ -14,8 +14,9 @@ Ext.define('WebUI.view.layout.Nav',{
       expanded: true, 
       text:"root",
       children: [
-        { text:'Google', link: 'http://google.com', leaf: true},
-        { text: 'Interfaces', expanded: false, children: [
+        { text:'Patton Home Page', link: 'http://patton.com', leaf: true},
+        { text: 'Interface Configuration', expanded: false, children: [
+          {text: 'Arp',      panel: 'interface-arp',      leaf: true},
           {text: 'Ethernet', panel: 'interface-ethernet', leaf: true},
           {text: 'IP', panel: 'interface-ip', leaf: true}
         ]}
