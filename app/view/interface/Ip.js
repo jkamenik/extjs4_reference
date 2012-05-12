@@ -7,26 +7,26 @@ Ext.define('WebUI.view.interface.Ip',{
   title: 'IP Interfaces',
   
   columns: [{
-    text: 'IP',
-    dataIndex: 'ip',
+    text:      'IP Address',
+    dataIndex: 'address',
     flex:      1
   },{
-    text:      'Mask',
-    dataIndex: 'mask',
+    text:      'Netmask',
+    dataIndex: 'netmask',
     flex:      1
   },{
-    text:      'Ethernet',
-    dataIndex: 'ethernet_id',
-    renderer: function(value){
-      logger.debug('Rendering IP row');
-      logger.debug(Ext.getStore('Ethernets'));
-      return Ext.getStore('Ethernets').getById(value).get('name');
-    },
+    text:      'Broadcast',
+    dataIndex: 'broadcast',
+    flex:      1
+  },{
+    text:      'Interface',
+    dataIndex: 'ifName',
     flex:      1
   }],
   
   tbar: [
     { xtype: 'button', text: 'New' },
-    '|','Double click to Edit'
+    '|','Double click to Edit','->',
+    { xtype: 'button', itemId: 'refresh', icon: '/resources/images/button_icons/table_refresh.png'}
   ]
 });

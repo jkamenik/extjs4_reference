@@ -45,7 +45,7 @@ Ext.define('WebUI.controller.Ips', {
   },
   
   refresh: function(button){
-    this.getIpsStore().refresh();
+    this.getIpsStore().load();
   },
   
   updateRecord: function(button){
