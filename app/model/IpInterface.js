@@ -1,10 +1,6 @@
 Ext.define('WebUI.model.IpInterface', {
     extend: 'Ext.data.Model',
-    fields: ['uid','ifName',
-      {name: 'netmask',   mapping: 'address->mask->str'},
-      {name: 'address',   mapping: 'address->net->str'},
-      {name: 'broadcast', mapping: 'broadcast->str'}
-    ],
+    fields: ['uid','ifName',{name: 'address', mapping: 'address->net->str'},'addrType',{name: 'broadcast', mapping: 'broadcast->str'},{name: 'mask', mapping: 'address->mask->str'}],
     
     idProperty: 'uid',
     

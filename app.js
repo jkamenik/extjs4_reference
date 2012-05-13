@@ -13,7 +13,8 @@ Ext.application({
       'NavController',
       'Arps',
       'Ips',
-      'Ethernets'
+      'Ethernets',
+      'Route'
       // 'EthernetIps'
     ]
 });

@@ -19,5 +19,25 @@ Ext.define('WebUI.view.layout.Content',{
   //   xtype: 'interface-ip'
   // },{
   //   xtype: 'interface-ethernet'
+  }],
+  
+  tbar: [
+    '->'
+  ,{
+    xtype: 'button',
+    text:  'Save',
+    icon: 'resources/images/button_icons/Save.png',
+    bubbleEvents: ['click']
+  },{
+    xtype: 'button',
+    text:  'Reboot',
+    icon: 'resources/images/button_icons/Exit.png',
+    bubbleEvents: ['click']
+  },{
+    xtype:   'button',
+    text:    'Logout',
+    icon: 'resources/images/button_icons/Logout.png',
+    bubbleEvents: ['click'],
+    disable: true
   }]
 });

@@ -7,26 +7,21 @@ Ext.define('WebUI.view.interface.Ip',{
   title: 'IP Interfaces',
   
   columns: [{
-    text:      'IP Address',
-    dataIndex: 'address',
+    text: 'IP',
+    dataIndex: 'ip',
     flex:      1
   },{
     text:      'Netmask',
     dataIndex: 'netmask',
     flex:      1
   },{
-    text:      'Broadcast',
-    dataIndex: 'broadcast',
-    flex:      1
-  },{
-    text:      'Interface',
-    dataIndex: 'ifName',
+    text:      'Mask',
+    dataIndex: 'mask',
     flex:      1
   }],
   
   tbar: [
     { xtype: 'button', text: 'New' },
-    '|','Double click to Edit','->',
-    { xtype: 'button', itemId: 'refresh', icon: '/resources/images/button_icons/table_refresh.png'}
+    '|','Double click to Edit'
   ]
 });

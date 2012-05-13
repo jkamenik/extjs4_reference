@@ -14,12 +14,13 @@ Ext.define('WebUI.view.layout.Nav',{
       expanded: true, 
       text:"root",
       children: [
-        { text:'Patton Home Page', link: 'http://patton.com', leaf: true},
+        { text:'Patton Home', link: 'http://www.patton.com', leaf: true},
         { text: 'Interface Configuration', expanded: false, children: [
           {text: 'Arp',      panel: 'interface-arp',      leaf: true},
           {text: 'Ethernet', panel: 'interface-ethernet', leaf: true},
           {text: 'IP', panel: 'interface-ip', leaf: true}
-        ]}
+        ]},
+        { text:'Static Route', panel: 'static-route', leaf: true}
       ]
     }
   }),

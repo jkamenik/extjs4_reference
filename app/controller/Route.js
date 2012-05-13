@@ -1,33 +1,33 @@
-Ext.define('WebUI.controller.Ips', {
+Ext.define('WebUI.controller.Route', {
   extend: 'Ext.app.Controller',
   
-  views:  ['interface.Ip','interface.IpEditor'],
-  stores: ['Ethernets','Ips'],
-  models: ['IpInterface'],
+  views:  ['Route','RouteEditor'],
+  stores: ['Route'],
+  models: ['Route'],
   
   refs: [{
     ref:      'update',
-    selector: 'interface-ip button[text=Edit]'
+    selector: 'static-route button[text=Edit]'
   }],
   
   init: function() {
     this.control({
-      'interface-ip': {
+      'static-route': {
         itemdblclick: this.openEditor
       },
-      'interface-ip-editor button[action=save]': {
+      'static-route-editor button[action=save]': {
         click: this.updateRecord
       },
-      'interface-ip-editor button[action=close]': {
+      'static-route-editor button[action=close]': {
         click: this.closeEditor
       },
-      'interface-ip button[text=Edit]': {
+      'static-route button[text=Edit]': {
         click: this.openEditor
       },
-      'interface-ip button[text=New]': {
+      'static-route button[text=New]': {
         click: this.newEditor
       },
-      'interface-ip button[itemId=Refresh]': {
+      'static-route button[itemId=refresh]': {
         click: this.refresh
       }
     });
@@ -35,17 +35,17 @@ Ext.define('WebUI.controller.Ips', {
   },
 
   openEditor: function(grid,record){
-    Ext.widget('interface-ip-editor').down('form').loadRecord(record);
+    Ext.widget('static-route-editor').down('form').loadRecord(record);
   },
   newEditor: function(){
-    Ext.widget('interface-ip-editor').down('form').loadRecord(this.getModel('IpInterface').create({}));
+    Ext.widget('static-route-editor').down('form').loadRecord(this.getModel('Route').create({}));
   },
   closeEditor: function(button){
     button.up('window').close();
   },
   
   refresh: function(button){
-    this.getIpsStore().load();
+    this.getRouteStore().refresh();
   },
   
   updateRecord: function(button){
@@ -57,12 +57,12 @@ Ext.define('WebUI.controller.Ips', {
     
     if(test.isEmpty(record.get('id'))){
       // must add the time to store
-      var id = this.getIpsStore().max('id') || 0;
+      var id = this.getRouteStore().max('id') || 0;
       record.set('id',id);
-      this.getIpsStore().add(record);
+      this.getRouteStore().add(record);
     }
 
     win.close();
-    this.getIpsStore().sync();
+    this.getRouteStore().sync();
   }
 });

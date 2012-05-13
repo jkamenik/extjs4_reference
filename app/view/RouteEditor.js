@@ -1,8 +1,8 @@
-Ext.define('WebUI.view.interface.IpEditor', {
+Ext.define('WebUI.view.RouteEditor', {
     extend: 'Ext.window.Window',
-    alias : 'widget.interface-ip-editor',
+    alias : 'widget.static-route-editor',
 
-    title : 'Edit Ip',
+    title : 'Edit Route',
     layout: 'fit',
     autoShow: true,
     
@@ -10,25 +10,18 @@ Ext.define('WebUI.view.interface.IpEditor', {
       xtype: 'form',
       items: [{
         xtype:      'textfield',
-        name:       'ifName',
-        fieldLabel: 'Name',
+        name:       'dest',
+        fieldLabel: 'Destination',
         allowBlank: false
       },{
         xtype:      'textfield',
-        name:       'address',
-        fieldLabel: 'IP',
+        name:       'mask',
+        fieldLabel: 'Mask',
         allowBlank: false
       },{
         xtype:      'textfield',
-        name:       'netmask',
+        name:       'gateway',
         fieldLabel: 'Mask'
-      },{
-        xtype:        'combobox',
-        store:        'Ethernets',
-        displayField: 'name',
-        valueField:   'id',
-        name:         'ethernet_id',
-        fieldLabel:   'Ethernet'
       }],
       buttons: [{
         text: 'Save',
