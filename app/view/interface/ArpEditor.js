@@ -24,14 +24,17 @@ Ext.define('WebUI.view.interface.ArpEditor', {
         }]
       }];
 
-      this.buttons = [{
-        text: 'Save',
-        action: 'save'
+      this.buttons = [[{
+        action:  'save',
+        tooltip: 'Submit Changes',
+        iconCls: 'icon-ok',
+        formBind: true
+        
       },{
-        text: 'Cancel',
-        scope: this,
-        handler: this.close
-      }];
+        action:  'close',
+        tooltip: 'Cancel Changes',
+        iconCls: 'icon-cancel',
+      }]];
 
       this.callParent(arguments);
     }

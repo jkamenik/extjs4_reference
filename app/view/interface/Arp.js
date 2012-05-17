@@ -18,10 +18,23 @@ Ext.define('WebUI.view.interface.Arp',{
     flex:      1
   }],
   
-  // This might best be a mixin
   tbar: [
-    { xtype: 'button', text: 'New' },
-    '|','Double click to Edit','->',
-    { xtype: 'button', itemId: 'refresh', icon: '/resources/images/button_icons/table_refresh.png'}
+    {
+      xtype:   'button',
+      action:  'add',
+      tooltip: 'Add Interface',
+      iconCls: 'icon-add'
+    },{
+      xtype:   'button',
+      action:  'delete',
+      tooltip: 'Delete Interface',
+      iconCls: 'icon-delete',
+      disabled: true
+    },'|','Double click to Edit','->',{
+      xtype:   'button',
+      action:  'refresh',
+      tooltip: 'Refresh',
+      iconCls: 'icon-refresh'
+    }
   ]
 });

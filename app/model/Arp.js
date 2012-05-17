@@ -1,13 +1,11 @@
 Ext.define('WebUI.model.Arp', {
     extend: 'Ext.data.Model',
     fields: [
-      'uid',
+    {name: 'id', mapping: 'uid', type: 'int', persist: false},
       {mapping: 'hwAddress',      name: 'ethernet'},
       {mapping: 'ipAddress->str', name: 'address'},
       {mapping: 'doNotExport',    name: 'user_defined'}
     ],
-    
-    idProperty: 'uid',
     
     proxy: {
       type: 'rest',
@@ -19,8 +17,8 @@ Ext.define('WebUI.model.Arp', {
         messageProperty: 'message'
       },
       writer: {
-        type:         'json',
-        nameProperty: 'mapping'
+        type:            'json',
+        nameProperty:    'mapping'
       }
     }
 });

@@ -5,19 +5,39 @@ Ext.define('WebUI.controller.Arps', {
   stores: ['Arps'],
   models: ['Arp'],
   
+  refs: [{
+    ref:      'deleteButton',
+    selector: 'interface-arp button[action=delete]'
+  },{
+    ref:      'grid',
+    selector: 'interface-arp'
+  }],
+  
   init: function() {
     this.control({
       'interface-arp': {
-        itemdblclick: this.openEditor
-      },
-      'interface-arp button[text=Edit]': {
-        click: this.openEditor
+        beforeshow: this.refresh,
+        itemdblclick: this.openEditor,
+        selectionchange: {
+          fn: function (selected, opts) {
+            this.getDeleteButton().setDisabled(selected.getCount() === 0);
+          }
+        }
       },
       'interface-arp-editor button[action=save]': {
         click: this.updateRecord
       },
+      'interface-arp-editor button[action=close]': {
+        click: this.closeEditor
+      },
+      'interface-arp button[action=add]': {
+        click: this.newEditor
+      },
       'interface-arp button[itemId=refresh]': {
         click: this.refresh
+      },
+      'interface-arp button[action=delete]': {
+        click: this.deleteRecord
       }
     });
   },
@@ -26,7 +46,14 @@ Ext.define('WebUI.controller.Arps', {
     Ext.widget('interface-arp-editor').down('form').loadRecord(record);
   },
   newEditor: function(){
-    Ext.widget('interface-arp-editor').down('form').loadRecord(this.getModel('Arp').create({}));
+    Ext.widget('interface-arp-editor').down('form').loadRecord(this.getArpModel().create({}));
+  },
+  closeEditor: function(button){
+    button.up('window').close();
+  },
+  
+  refresh: function(button){
+    this.getArpsStore().load();
   },
   
   updateRecord: function(button){
@@ -36,17 +63,20 @@ Ext.define('WebUI.controller.Arps', {
     
     record.set(form.getValues());
     
-    logger.debug(record);
-    
-    if(test.isEmpty(record.getId())){
+    if( record.get('id') == 0 ){
+      // must add the item to the store
       this.getArpsStore().add(record);
     }
-    
+
     win.close();
-    this.getArpsStore().sync();
   },
   
-  refresh: function(button){
-    this.getArpsStore().load();
+  deleteRecord: function(button){
+    var record  = this.getGrid().getSelectionModel().getSelection()[0];
+    logger.debug(record);
+    var store  = this.getArpsStore();
+    if (record) {
+      store.remove(record);
+    }
   }
 });
