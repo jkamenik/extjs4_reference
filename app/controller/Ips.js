@@ -2,18 +2,28 @@ Ext.define('WebUI.controller.Ips', {
   extend: 'Ext.app.Controller',
   
   views:  ['interface.Ip','interface.IpEditor'],
-  stores: ['Ethernets','Ips'],
+  stores: ['ContextIps','Ips'],
   models: ['IpInterface'],
   
   refs: [{
-    ref:      'update',
-    selector: 'interface-ip button[text=Edit]'
+    ref:      'deleteButton',
+    selector: 'interface-ip button[action=delete]'
+  },{
+    ref:      'grid',
+    selector: 'interface-ip'
   }],
   
   init: function() {
     this.control({
       'interface-ip': {
-        itemdblclick: this.openEditor
+        beforeshow: this.refresh,
+        beforerender: this.refresh,
+        itemdblclick: this.openEditor,
+        selectionchange: {
+          fn: function (selected, opts) {
+            this.getDeleteButton().setDisabled(selected.getCount() === 0);
+          }
+        }
       },
       'interface-ip-editor button[action=save]': {
         click: this.updateRecord
@@ -21,14 +31,14 @@ Ext.define('WebUI.controller.Ips', {
       'interface-ip-editor button[action=close]': {
         click: this.closeEditor
       },
-      'interface-ip button[text=Edit]': {
-        click: this.openEditor
-      },
-      'interface-ip button[text=New]': {
+      'interface-ip button[action=add]': {
         click: this.newEditor
       },
-      'interface-ip button[itemId=Refresh]': {
+      'interface-ip button[action=refresh]': {
         click: this.refresh
+      },
+      'interface-ip button[action=delete]': {
+        click: this.deleteRecord
       }
     });
     
@@ -38,13 +48,14 @@ Ext.define('WebUI.controller.Ips', {
     Ext.widget('interface-ip-editor').down('form').loadRecord(record);
   },
   newEditor: function(){
-    Ext.widget('interface-ip-editor').down('form').loadRecord(this.getModel('IpInterface').create({}));
+    Ext.widget('interface-ip-editor').down('form').loadRecord(this.getIpInterfaceModel().create({}));
   },
   closeEditor: function(button){
     button.up('window').close();
   },
   
   refresh: function(button){
+    this.getContextIpsStore().load();
     this.getIpsStore().load();
   },
   
@@ -55,14 +66,20 @@ Ext.define('WebUI.controller.Ips', {
     
     record.set(form.getValues());
     
-    if(test.isEmpty(record.get('id'))){
-      // must add the time to store
-      var id = this.getIpsStore().max('id') || 0;
-      record.set('id',id);
+    if( record.get('id') == 0 ){
+      // must add the item to the store
       this.getIpsStore().add(record);
     }
 
     win.close();
-    this.getIpsStore().sync();
+  },
+  
+  deleteRecord: function(button){
+    var record  = this.getGrid().getSelectionModel().getSelection()[0];
+    logger.debug(record);
+    var store  = this.getIpsStore();
+    if (record) {
+      store.remove(record);
+    }
   }
 });

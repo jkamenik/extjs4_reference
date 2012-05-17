@@ -21,15 +21,17 @@ Ext.define('WebUI.view.RouteEditor', {
       },{
         xtype:      'textfield',
         name:       'gateway',
-        fieldLabel: 'Mask'
+        fieldLabel: 'Gateway'
       }],
       buttons: [{
-        text: 'Save',
-        action: 'save',
+        action:  'save',
+        tooltip: 'Submit Changes',
+        iconCls: 'icon-ok',
         formBind: true
       },{
-        text:   'Cancel',
-        action: 'close'
+        action:  'close',
+        tooltip: 'Cancel Changes',
+        iconCls: 'icon-cancel',
       }]
     }]
 });

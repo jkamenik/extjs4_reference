@@ -16,27 +16,30 @@ Ext.define('WebUI.view.interface.IpEditor', {
       },{
         xtype:      'textfield',
         name:       'address',
-        fieldLabel: 'IP',
-        allowBlank: false
+        fieldLabel: 'IP'
       },{
         xtype:      'textfield',
-        name:       'netmask',
+        name:       'mask',
         fieldLabel: 'Mask'
       },{
         xtype:        'combobox',
-        store:        'Ethernets',
-        displayField: 'name',
+        store:        'ContextIps',
+        displayField: 'ctxName',
         valueField:   'id',
-        name:         'ethernet_id',
-        fieldLabel:   'Ethernet'
+        name:         'parentId',
+        fieldLabel:   'IP Context',
+        allowBlank:   false
       }],
       buttons: [{
-        text: 'Save',
-        action: 'save',
+        action:  'save',
+        tooltip: 'Submit Changes',
+        iconCls: 'icon-ok',
         formBind: true
+        
       },{
-        text:   'Cancel',
-        action: 'close'
+        action:  'close',
+        tooltip: 'Cancel Changes',
+        iconCls: 'icon-cancel',
       }]
     }]
 });

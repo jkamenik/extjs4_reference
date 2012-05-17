@@ -7,21 +7,43 @@ Ext.define('WebUI.view.interface.Ip',{
   title: 'IP Interfaces',
   
   columns: [{
-    text: 'IP',
-    dataIndex: 'ip',
+    text: 'Name',
+    dataIndex: 'ifName',
     flex:      1
   },{
-    text:      'Netmask',
-    dataIndex: 'netmask',
+    text: 'IP',
+    dataIndex: 'address',
     flex:      1
   },{
     text:      'Mask',
     dataIndex: 'mask',
     flex:      1
+  },{
+    text:      'IP Context',
+    dataIndex: 'parentId',
+    renderer: function(value){
+      return Ext.getStore('ContextIps').getById(value).get('ctxName');
+    },
+    flex:      1
   }],
   
   tbar: [
-    { xtype: 'button', text: 'New' },
-    '|','Double click to Edit'
+    {
+      xtype:   'button',
+      action:  'add',
+      tooltip: 'Add Interface',
+      iconCls: 'icon-add'
+    },{
+      xtype:   'button',
+      action:  'delete',
+      tooltip: 'Delete Interface',
+      iconCls: 'icon-delete',
+      disabled: true
+    },'|','Double click to Edit','->',{
+      xtype:   'button',
+      action:  'refresh',
+      tooltip: 'Refresh',
+      iconCls: 'icon-refresh'
+    }
   ]
 });

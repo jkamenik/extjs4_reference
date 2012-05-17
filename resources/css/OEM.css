@@ -1,3 +1,34 @@
 .patton-header .x-panel-body {
-	background-image: url(../images/header-background.gif);
+  background-image: url(../images/header-background.gif);
+}
+
+.icon-delete {
+  background-image: url("../images/button_icons/Trash.png") !important;
+}
+.icon-add {
+  background-image: url("../images/button_icons/Plus.png") !important;
+}
+.icon-refresh {
+  background-image: url("../images/button_icons/Refresh.png") !important;
+}
+.icon-save {
+  background-image: url("../images/button_icons/Save.png") !important;
+}
+.icon-reboot {
+  background-image: url("../images/button_icons/Standby.png") !important;
+}
+.icon-logout {
+  background-image: url("../images/button_icons/GoOut.png") !important;
+}
+.icon-ok {
+  background-image: url("../images/button_icons/Ok.png") !important;
+}
+.icon-cancel {
+  background-image: url("../images/button_icons/Cancel.png") !important;
+}
+.icon-ok-wide {
+  background-image: url("../images/button_icons/OkWide.png") !important;
+}
+.icon-cancel-wide {
+  background-image: url("../images/button_icons/CancelWide.png") !important;
 }

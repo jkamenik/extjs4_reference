@@ -18,7 +18,22 @@ Ext.define('WebUI.view.Route',{
   ],
   
   tbar: [
-    { xtype: 'button', text: 'New' },
-    '|','Double click to Edit'
+    {
+      xtype:   'button',
+      action:  'add',
+      tooltip: 'Add Route',
+      iconCls: 'icon-add'
+    },{
+      xtype:   'button',
+      action:  'delete',
+      tooltip: 'Delete Route',
+      iconCls: 'icon-delete',
+      disabled: true
+    },'->',{
+      xtype:   'button',
+      action:  'refresh',
+      tooltip: 'Refresh',
+      iconCls: 'icon-refresh'
+    }
   ]
 });

@@ -6,14 +6,22 @@ Ext.define('WebUI.controller.Route', {
   models: ['Route'],
   
   refs: [{
-    ref:      'update',
-    selector: 'static-route button[text=Edit]'
+    ref:      'deleteButton',
+    selector: 'static-route button[action=delete]'
+  },{
+    ref:      'grid',
+    selector: 'static-route'
   }],
   
   init: function() {
     this.control({
       'static-route': {
-        itemdblclick: this.openEditor
+        beforeshow: this.refresh,
+        selectionchange: {
+          fn: function (selected, opts) {
+            this.getDeleteButton().setDisabled(selected.getCount() === 0);
+          }
+        }
       },
       'static-route-editor button[action=save]': {
         click: this.updateRecord
@@ -21,31 +29,32 @@ Ext.define('WebUI.controller.Route', {
       'static-route-editor button[action=close]': {
         click: this.closeEditor
       },
-      'static-route button[text=Edit]': {
-        click: this.openEditor
-      },
-      'static-route button[text=New]': {
+      'static-route button[action=add]': {
         click: this.newEditor
       },
-      'static-route button[itemId=refresh]': {
+      'static-route button[action=refresh]': {
         click: this.refresh
+      },
+      'static-route button[action=delete]': {
+        click: this.deleteRecord
       }
     });
     
   },
 
+
   openEditor: function(grid,record){
     Ext.widget('static-route-editor').down('form').loadRecord(record);
   },
   newEditor: function(){
-    Ext.widget('static-route-editor').down('form').loadRecord(this.getModel('Route').create({}));
+    Ext.widget('static-route-editor').down('form').loadRecord(this.getRouteModel().create({}));
   },
   closeEditor: function(button){
     button.up('window').close();
   },
   
   refresh: function(button){
-    this.getRouteStore().refresh();
+    this.getRouteStore().load();
   },
   
   updateRecord: function(button){
@@ -55,14 +64,20 @@ Ext.define('WebUI.controller.Route', {
     
     record.set(form.getValues());
     
-    if(test.isEmpty(record.get('id'))){
-      // must add the time to store
-      var id = this.getRouteStore().max('id') || 0;
-      record.set('id',id);
+    if( record.get('id') == 0 ){
+      // must add the item to the store
       this.getRouteStore().add(record);
     }
 
     win.close();
-    this.getRouteStore().sync();
+  },
+  
+  deleteRecord: function(button){
+    var record  = this.getGrid().getSelectionModel().getSelection()[0];
+    logger.debug(record);
+    var store  = this.getRouteStore();
+    if (record) {
+      store.remove(record);
+    }
   }
 });

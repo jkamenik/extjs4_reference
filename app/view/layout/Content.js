@@ -12,7 +12,7 @@ Ext.define('WebUI.view.layout.Content',{
   border: false,
   
   items: [{
-    html: 'I am content'
+    html: ''
   },{
     xtype: 'ContentError'
   // },{
@@ -24,20 +24,23 @@ Ext.define('WebUI.view.layout.Content',{
   tbar: [
     '->'
   ,{
-    xtype: 'button',
-    text:  'Save',
-    icon: 'resources/images/button_icons/Save.png',
-    bubbleEvents: ['click']
-  },{
-    xtype: 'button',
-    text:  'Reboot',
-    icon: 'resources/images/button_icons/Exit.png',
+    xtype:   'button',
+    action:  'save',
+    tooltip: 'Save Configuration',
+    iconCls: 'icon-save',
     bubbleEvents: ['click']
   },{
     xtype:   'button',
-    text:    'Logout',
-    icon: 'resources/images/button_icons/Logout.png',
+    action:  'reboot',
+    tooltip: 'Reboot System',
+    iconCls: 'icon-reboot',
+    bubbleEvents: ['click']
+  },{
+    xtype:   'button',
+    action:  'logout',
+    tooltip: 'Logout',
+    iconCls: 'icon-logout',
     bubbleEvents: ['click'],
-    disable: true
+    disabled: true
   }]
 });
