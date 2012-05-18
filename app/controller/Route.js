@@ -14,14 +14,11 @@ Ext.define('WebUI.controller.Route', {
   }],
   
   init: function() {
+    this.getRouteModel().getProxy().addListener('exception', this.processModelException, this);
     this.control({
       'static-route': {
         beforeshow: this.refresh,
-        selectionchange: {
-          fn: function (selected, opts) {
-            this.getDeleteButton().setDisabled(selected.getCount() === 0);
-          }
-        }
+        selectionchange: this.selectionchange
       },
       'static-route-editor button[action=save]': {
         click: this.updateRecord
@@ -42,6 +39,15 @@ Ext.define('WebUI.controller.Route', {
     
   },
 
+  selectionchange: function(selected, opts){
+    var disable = true;
+    if ( selected.getCount() != 0 )
+    {
+      var record  = this.getGrid().getSelectionModel().getSelection()[0];
+      disable = record.get('doNotExport');
+    }
+    this.getDeleteButton().setDisabled(disable);
+  },
 
   openEditor: function(grid,record){
     Ext.widget('static-route-editor').down('form').loadRecord(record);
@@ -79,5 +85,15 @@ Ext.define('WebUI.controller.Route', {
     if (record) {
       store.remove(record);
     }
+  },
+  
+  processModelException: function(proxy, response, options) {
+      // response contains responseText, which has the message
+      // but in unparsed Json (see below)
+      console.log(proxy, response, options);
+      var data = Ext.decode(response.responseText);
+      logger.debug(data.message);
+      options.records[0].reject();
+      this.getRouteStore().remove(options.records[0]);
   }
 });

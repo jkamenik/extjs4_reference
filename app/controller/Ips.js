@@ -14,6 +14,7 @@ Ext.define('WebUI.controller.Ips', {
   }],
   
   init: function() {
+    this.getIpInterfaceModel().getProxy().addListener('exception', this.processModelException, this);
     this.control({
       'interface-ip': {
         beforeshow: this.refresh,
@@ -81,5 +82,15 @@ Ext.define('WebUI.controller.Ips', {
     if (record) {
       store.remove(record);
     }
+  },
+  
+  processModelException: function(proxy, response, options) {
+      // response contains responseText, which has the message
+      // but in unparsed Json (see below)
+      console.log(proxy, response, options);
+      var data = Ext.decode(response.responseText);
+      logger.debug(data.message);
+      options.records[0].reject();
+      this.getIpsStore().remove(options.records[0]);
   }
 });
