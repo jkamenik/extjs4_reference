@@ -17,10 +17,6 @@ Ext.define('WebUI.view.interface.ArpEditor', {
           xtype:      'textfield',
           name:       'ethernet',
           fieldLabel: 'Ethernet'
-        },{
-          xtype:      'checkbox',
-          name:       'user_defined',
-          fieldLabel: 'User Defined?'
         }]
       }];
 

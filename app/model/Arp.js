@@ -1,10 +1,10 @@
 Ext.define('WebUI.model.Arp', {
     extend: 'Ext.data.Model',
     fields: [
-    {name: 'id', mapping: 'uid', type: 'int', persist: false},
-      {mapping: 'hwAddress',      name: 'ethernet'},
-      {mapping: 'ipAddress->str', name: 'address'},
-      {mapping: 'doNotExport',    name: 'user_defined'}
+      {name: 'id',           mapping: 'uid', type: 'int', persist: false},
+      {name: 'ethernet',     mapping: 'hwAddress'      },
+      {name: 'address',      mapping: 'ipAddress->str' },
+      {name: 'userDefined',  persist: false}
     ],
     
     proxy: {

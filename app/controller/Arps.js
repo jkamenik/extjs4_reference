@@ -17,7 +17,6 @@ Ext.define('WebUI.controller.Arps', {
     this.control({
       'interface-arp': {
         beforeshow: this.refresh,
-        itemdblclick: this.openEditor,
         selectionchange: {
           fn: function (selected, opts) {
             this.getDeleteButton().setDisabled(selected.getCount() === 0);
@@ -33,7 +32,7 @@ Ext.define('WebUI.controller.Arps', {
       'interface-arp button[action=add]': {
         click: this.newEditor
       },
-      'interface-arp button[itemId=refresh]': {
+      'interface-arp button[action=refresh]': {
         click: this.refresh
       },
       'interface-arp button[action=delete]': {
@@ -42,9 +41,6 @@ Ext.define('WebUI.controller.Arps', {
     });
   },
 
-  openEditor: function(grid,record){
-    Ext.widget('interface-arp-editor').down('form').loadRecord(record);
-  },
   newEditor: function(){
     Ext.widget('interface-arp-editor').down('form').loadRecord(this.getArpModel().create({}));
   },

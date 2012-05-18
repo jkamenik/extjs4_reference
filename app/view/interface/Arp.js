@@ -13,8 +13,8 @@ Ext.define('WebUI.view.interface.Arp',{
     dataIndex: 'ethernet',
     flex:      1
   },{
-    text:      'User Defined',
-    dataIndex: 'user_defined',
+    text:      'Permanent',
+    dataIndex: 'userDefined',
     flex:      1
   }],
   
@@ -30,7 +30,7 @@ Ext.define('WebUI.view.interface.Arp',{
       tooltip: 'Delete Interface',
       iconCls: 'icon-delete',
       disabled: true
-    },'|','Double click to Edit','->',{
+    },'->',{
       xtype:   'button',
       action:  'refresh',
       tooltip: 'Refresh',
