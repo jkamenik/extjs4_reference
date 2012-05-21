@@ -9,6 +9,9 @@ Ext.define('WebUI.controller.Ips', {
     ref:      'deleteButton',
     selector: 'interface-ip button[action=delete]'
   },{
+    ref:      'formDeleteButton',
+    selector: 'interface-ip-editor button[action=delete]'
+  },{
     ref:      'grid',
     selector: 'interface-ip'
   }],
@@ -32,6 +35,9 @@ Ext.define('WebUI.controller.Ips', {
       'interface-ip-editor button[action=close]': {
         click: this.closeEditor
       },
+      'interface-ip-editor button[action=delete]': {
+        click: this.deleteRecordAndCloseEditor
+      },
       'interface-ip button[action=add]': {
         click: this.newEditor
       },
@@ -50,6 +56,7 @@ Ext.define('WebUI.controller.Ips', {
   },
   newEditor: function(){
     Ext.widget('interface-ip-editor').down('form').loadRecord(this.getIpInterfaceModel().create({}));
+    this.getFormDeleteButton().hide();
   },
   closeEditor: function(button){
     button.up('window').close();
@@ -73,6 +80,11 @@ Ext.define('WebUI.controller.Ips', {
     }
 
     win.close();
+  },
+  
+  deleteRecordAndCloseEditor: function(button){
+    this.deleteRecord(button);
+    button.up('window').close();
   },
   
   deleteRecord: function(button){
