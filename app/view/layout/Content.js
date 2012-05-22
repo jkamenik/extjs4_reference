@@ -23,20 +23,17 @@ Ext.define('WebUI.view.layout.Content',{
     xtype:   'button',
     action:  'save',
     tooltip: 'Save Configuration',
-    iconCls: 'icon-save',
-    bubbleEvents: ['click']
+    iconCls: 'icon-save'
   },{
     xtype:   'button',
     action:  'reboot',
     tooltip: 'Reboot System',
-    iconCls: 'icon-reboot',
-    bubbleEvents: ['click']
+    iconCls: 'icon-reboot'
   },{
     xtype:   'button',
     action:  'logout',
     tooltip: 'Logout',
     iconCls: 'icon-logout',
-    bubbleEvents: ['click'],
     disabled: true
   }]
 });

@@ -78,12 +78,12 @@ Ext.define('WebUI.controller.Arps', {
   },
   
   processModelException: function(proxy, response, options) {
-      // response contains responseText, which has the message
-      // but in unparsed Json (see below)
-      console.log(proxy, response, options);
-      var data = Ext.decode(response.responseText);
-      logger.debug(data.message);
-      options.records[0].reject();
-      this.getArpsStore().remove(options.records[0]);
+    // response contains responseText, which has the message
+    // but in unparsed Json (see below)
+    console.log(proxy, response, options);
+    var data = Ext.decode(response.responseText);
+    logger.debug(data.message);
+    options.records[0].reject();
+    this.getArpsStore().remove(options.records[0]);
   }
 });

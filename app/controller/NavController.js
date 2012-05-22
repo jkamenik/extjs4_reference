@@ -1,3 +1,8 @@
+Ext.require([
+  'Ext.window.MessageBox',
+  'Ext.Ajax'
+]);
+
 Ext.define("WebUI.controller.NavController",{
   extend: 'Ext.app.Controller',
   
@@ -25,14 +30,23 @@ Ext.define("WebUI.controller.NavController",{
   
   init: function() {
     this.control({
-      'layout-nav button[action="expand"]': {
+      'layout-nav button[action=expand]': {
         click: this.expandAll
       },
-      'layout-nav button[action="collapse"]': {
+      'layout-nav button[action=collapse]': {
         click: this.collapseAll
       },
       'layout-nav': {
         select: this.itemSelected
+      },
+      'layout-content button[action=save]': {
+        click: this.onSave
+      },
+      'layout-content button[action=reboot]': {
+        click: this.onReboot
+      },
+      'layout-content button[action=logout]': {
+        click: this.onLogout
       }
     });
   },
@@ -76,5 +90,58 @@ Ext.define("WebUI.controller.NavController",{
       logger.error(e);
       this.getContent().getLayout().setActiveItem('ContentError');
     }
+  },
+  
+  onSave: function(button){
+    logger.debug( 'Save Pressed' );
+    Ext.Msg.show({
+      msg: 'Saving changes.',
+      width:300,
+      wait:true,
+      waitConfig: {interval:80}
+    });
+    setTimeout(function(){
+      // This causes the message to stay on screen for a brief time, and then automatically dismisses.
+      Ext.MessageBox.hide();
+    }, 1000);
+    Ext.Ajax.request({
+      url: '/rest/trinity_db_core/CliManagerCmd?execute',
+      method: 'POST',
+      jsonData: {
+        cmd: 'cliCmd',
+        arguments: [ 'copy running-config startup-config' ]
+      }
+    })
+  },
+  
+  onReboot: function(button){
+    function confirmReboot(btn){
+      if ( btn == 'yes' ){
+        Ext.Ajax.request({
+          url: '/rest/trinity_db_core/Platform?execute',
+          method: 'POST',
+          jsonData: {
+            cmd: 'reload',
+            arguments: [ '0' ]
+          }
+        })
+        Ext.Msg.show({
+          msg: 'The unit will be unresponsive while rebooting. Please wait...',
+          width:300,
+          wait:true,
+          waitConfig: {interval:1000},
+        });
+        setTimeout(function(){
+          // This leaves a message up for a guess at how long it will take to reboot.
+          //  We should really query the box instead to see when it is alive.
+          Ext.MessageBox.hide();
+        }, 50000);
+      }
+    };
+    logger.debug( 'Reboot Pressed' );
+    Ext.Msg.confirm('Confirm', 'Are you sure you want to reboot?', confirmReboot);
+  },
+  
+  onLogout: function(button){
   }
 });
