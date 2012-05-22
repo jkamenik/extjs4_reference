@@ -1,7 +1,14 @@
 .patton-header .x-panel-body {
   background-image: url(../images/header-background.gif);
 }
-
+.patton-header .logo {
+  background-image: url("../images/patton.png") !important;
+  background-repeat: no-repeat;
+  width: 250;
+  height: 62;
+  margin-top: 10px;
+  margin-left:15px;
+}
 .icon-delete {
   background-image: url("../images/button_icons/Trash.png") !important;
 }
@@ -26,9 +33,19 @@
 .icon-cancel {
   background-image: url("../images/button_icons/Cancel.png") !important;
 }
-.icon-ok-wide {
-  background-image: url("../images/button_icons/OkWide.png") !important;
+.icon-expand {
+  background-image: url("../images/button_icons/FullSize.png") !important;
 }
-.icon-cancel-wide {
-  background-image: url("../images/button_icons/CancelWide.png") !important;
+.icon-collapse {
+  background-image: url("../images/button_icons/ReducedSize.png") !important;
 }
+#header-data .infoTable {
+    float: right;
+    margin-top: 15px;
+    margin-right: 5px;
+    color: white;
+    font-size: 12px;
+}
+.infoTable tr td { padding:0px 5px 0px 2px }
+.label { color: inherit; text-align:right; font-weight:bold;}
+.value { color: inherit; text-align:left; }

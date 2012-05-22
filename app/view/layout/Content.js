@@ -12,13 +12,9 @@ Ext.define('WebUI.view.layout.Content',{
   border: false,
   
   items: [{
-    html: ''
+    xtype: 'home'
   },{
     xtype: 'ContentError'
-  // },{
-  //   xtype: 'interface-ip'
-  // },{
-  //   xtype: 'interface-ethernet'
   }],
   
   tbar: [

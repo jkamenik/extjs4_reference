@@ -12,6 +12,9 @@ Ext.define("WebUI.controller.NavController",{
     'ContentError'
   ],
   
+  stores: ['ProductInfo'],
+  models: ['ProductInfo'],
+  
   refs: [{
     ref:      'nav',        //Give us the getNav() function that returns the layout-nav item
     selector: 'layout-nav'
@@ -22,10 +25,10 @@ Ext.define("WebUI.controller.NavController",{
   
   init: function() {
     this.control({
-      'layout-nav button[text="Expand All"]': {
+      'layout-nav button[action="expand"]': {
         click: this.expandAll
       },
-      'layout-nav button[text="Collapse All"]': {
+      'layout-nav button[action="collapse"]': {
         click: this.collapseAll
       },
       'layout-nav': {

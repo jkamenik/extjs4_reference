@@ -14,7 +14,8 @@ Ext.application({
       'Arps',
       'Ips',
       'Ethernets',
-      'Route'
+      'Route',
+      'Home'
       // 'EthernetIps'
     ]
 });

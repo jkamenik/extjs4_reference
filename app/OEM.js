@@ -7,10 +7,47 @@ Ext.define('WebUI.OEM.Header',{
   cls: 'patton-header',
   
   border: false,
+
+  layout: {
+    type:  'hbox',
+    pack:  'start',
+    align: 'stretch'
+  },
   
-  tpl: new Ext.XTemplate('<img src="resources/images/patton.png" style="margin-top: 20px; margin-left:15px"><span style="float: right; margin-top: 5px; margin-right: 5px; color: white;">{name}</span>'),
-  data: {name: 'Testing the header'},
+  items: [{
+    xtype: 'container',
+    flex: 10,
+    html: '<div class="logo">&nbsp;</div>'
+  },{
+    xtype: 'container',
+    width: 300,
+    border: false,
+    items: [{
+      xtype: 'dataview',
+      id: 'header-data',
+      itemSelector: 'infoTable',
+      store:        'ProductInfo',
+      loadMask: false,
+      autoShow: true,
+      autoRender: true,
+      tpl: [
+        '<table class="infoTable">',
+        '<tr><td class="label">Model:</td><td class="value">{model}</td></tr>',
+        '<tr><td class="label">{buildType} Version:</td><td class="value">{version}</td></tr>',
+        '<tr><td class="label">Current User:</td><td class="value">superuser</td></tr>',
+        '</table>'
+      ],
+      
+      // Get the first item, and thats it
+      collectData : function(records, startIndex){
+        var record;
+        record = records[0];
+        return this.prepareData(record[record.persistenceProperty], startIndex, record);
+      }
   
+    }],
+  }],
+    
   onRender: function(){
     this.setHeight(83);
     

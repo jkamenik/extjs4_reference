@@ -12,7 +12,17 @@ Ext.define('WebUI.model.ProductInfo', {
     {name: 'model'},
     {name: 'modelDescription'},
     {name: 'serialNumber'},
-    {name: 'version'}
+    {name: 'version'},
+    {name: 'utcTime'},
+    {name: 'localTime'},
+    {name: 'uptime'},
+    {name: 'totalRam'},
+    {name: 'freeRam'},
+    {name: 'totalProcs'},
+    {name: 'oneMinLoad'},
+    {name: 'fiveMinLoad'},
+    {name: 'fifteenMinLoad'}
+
   ],
   
   proxy: {

@@ -15,7 +15,8 @@ Ext.define('WebUI.view.layout.Nav',{
       text:"root",
       children: [
         { text:'Patton Home', link: 'http://www.patton.com', leaf: true},
-        { text: 'Interface Configuration', expanded: false, children: [
+        {text: 'Home',      panel: 'home',      leaf: true},
+        { text: 'Interface Configuration', expanded: true, children: [
           {text: 'Arp',      panel: 'interface-arp',      leaf: true},
           {text: 'Ethernet', panel: 'interface-ethernet', leaf: true},
           {text: 'IP', panel: 'interface-ip', leaf: true}
@@ -25,11 +26,17 @@ Ext.define('WebUI.view.layout.Nav',{
     }
   }),
   
-  tbar: [{
-    xtype: 'button',
-    text:  'Expand All'
-  },{
-    xtype: 'button',
-    text:  'Collapse All'
-  }]
+  tbar: [
+    {
+      xtype:   'button',
+      action:  'expand',
+      tooltip: 'Expand All',
+      iconCls: 'icon-expand'
+    },{
+      xtype:   'button',
+      action:  'collapse',
+      tooltip: 'Collapse All',
+      iconCls: 'icon-collapse'
+    }
+  ]
 });

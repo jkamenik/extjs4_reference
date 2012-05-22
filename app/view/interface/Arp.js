@@ -4,6 +4,8 @@ Ext.define('WebUI.view.interface.Arp',{
   
   store: 'Arps',
   
+  title: 'Arp Entries',
+  
   columns: [{
     text:      'IP Address',
     dataIndex: 'address',
