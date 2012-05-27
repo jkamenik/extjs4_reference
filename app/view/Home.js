@@ -21,6 +21,7 @@ Ext.define('WebUI.view.Home',{
       xtype: 'dataview',
       itemSelector: 'x-panel-body',
       store:        'ProductInfo',
+      loadMask: false,
       autoShow: true,
       autoRender: true,
       
@@ -53,6 +54,7 @@ Ext.define('WebUI.view.Home',{
       xtype: 'dataview',
       itemSelector: ' x-panel-body',
       store:        'ProductInfo',
+      loadMask: false,
       autoShow: true,
       autoRender: true,
       tpl: [

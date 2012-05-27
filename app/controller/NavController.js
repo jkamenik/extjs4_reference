@@ -17,8 +17,8 @@ Ext.define("WebUI.controller.NavController",{
     'ContentError'
   ],
   
-  stores: ['ProductInfo'],
-  models: ['ProductInfo'],
+  stores: ['ProductInfo', 'NavBar'],
+  models: ['ProductInfo', 'NavBar'],
   
   refs: [{
     ref:      'nav',        //Give us the getNav() function that returns the layout-nav item
@@ -37,7 +37,16 @@ Ext.define("WebUI.controller.NavController",{
         click: this.collapseAll
       },
       'layout-nav': {
-        select: this.itemSelected
+        select: this.itemSelected,
+        refresh: this.refresh,
+        viewready: {
+          fn: function () {
+            logger.debug('Nav View Ready');
+            //var el = Ext.select('.x-grid-group-hd .other', grid.getView().getEl());
+            //logger.debug(el);
+            //el.first().findParent('.x-grid-group-title', undefined, true).setStyle('display', 'none');
+          }
+        }
       },
       'layout-content button[action=save]': {
         click: this.onSave

@@ -15,7 +15,8 @@ Ext.application({
       'Ips',
       'Ethernets',
       'Route',
-      'Home'
+      'Home',
+      'NavBar'
       // 'EthernetIps'
     ]
 });
