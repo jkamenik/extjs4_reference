@@ -5,6 +5,10 @@ Ext.define('WebUI.controller.Route', {
   stores: ['Route'],
   models: ['Route'],
   
+  mixins: {
+    modelException: 'WebUI.controller.ModelExceptionMixin'
+  },
+  
   refs: [{
     ref:      'deleteButton',
     selector: 'static-route button[action=delete]'

@@ -5,7 +5,7 @@ Ext.define('WebUI.controller.ModelExceptionMixin', {
     passed the model and store to store deal with events for.
   */
   initModelException: function(model, matchingStore){
-    logger.info("Init ModelException");
+    logger.info("Init ModelException for " + this.id);
     logger.debug(arguments);
     
     this.modelExceptionModel = model;

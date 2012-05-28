@@ -5,6 +5,10 @@ Ext.define('WebUI.controller.NavBar', {
   stores: ['NavBar'],
   models: ['NavBar'],
   
+  mixins: {
+    modelException: 'WebUI.controller.ModelExceptionMixin'
+  },
+  
   refs: [{
     ref:      'deleteButton',
     selector: 'nav-bar button[action=delete]'
