@@ -5,6 +5,10 @@ Ext.define('WebUI.controller.Arps', {
   stores: ['Arps'],
   models: ['Arp'],
   
+  mixins: {
+    modelException: 'WebUI.controller.ModelExceptionMixin'
+  },
+  
   refs: [{
     ref:      'deleteButton',
     selector: 'interface-arp button[action=delete]'
@@ -14,7 +18,8 @@ Ext.define('WebUI.controller.Arps', {
   }],
   
   init: function() {
-    this.getArpModel().getProxy().addListener('exception', this.processModelException, this);
+    this.initModelException(this.getArpModel(),this.getArpsStore());
+
     this.control({
       'interface-arp': {
         beforeshow: this.refresh,
@@ -75,15 +80,5 @@ Ext.define('WebUI.controller.Arps', {
     if (record) {
       store.remove(record);
     }
-  },
-  
-  processModelException: function(proxy, response, options) {
-    // response contains responseText, which has the message
-    // but in unparsed Json (see below)
-    console.log(proxy, response, options);
-    var data = Ext.decode(response.responseText);
-    logger.debug(data.message);
-    options.records[0].reject();
-    this.getArpsStore().remove(options.records[0]);
   }
 });

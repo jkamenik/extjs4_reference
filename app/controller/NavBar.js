@@ -14,7 +14,8 @@ Ext.define('WebUI.controller.NavBar', {
   }],
   
   init: function() {
-    //this.getNavBarModel().getProxy().addListener('exception', this.processModelException, this);
+    this.initModelException(this.getNavBarModel(),this.getNavBarStore());
+
     this.control({
       'nav-bar': {
         beforeshow: this.refresh,
@@ -79,15 +80,5 @@ Ext.define('WebUI.controller.NavBar', {
     if (record) {
       store.remove(record);
     }
-  },
-  
-  processModelException: function(proxy, response, options) {
-    // response contains responseText, which has the message
-    // but in unparsed Json (see below)
-    console.log(proxy, response, options);
-    var data = Ext.decode(response.responseText);
-    logger.debug(data.message);
-    options.records[0].reject();
-    this.getNavBarStore().remove(options.records[0]);
   }
 });
